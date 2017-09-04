@@ -1,0 +1,12 @@
+
+You can think of variables in coding or programming as differently labeled jars to hold different types of data. A few examples of these are character, strings, numbers, boolean, and arrays. 
+
+CHARACTER- These are the single character which is the makeup of longer codes, but aren’t usually used by themselves but are the building blocks.
+
+STRINGS- These are “strings” or consecutive lists of characters. These are usually used to store text. Any regular sentence would usually be put into a string. 
+
+NUMBERS- This is pretty straightforward, it is just numbers written in code. These do not get put into strings like text, but instead you just put in the number. 
+
+BOOLEAN:This is something that will answer yes or no questions in your code. For example you could ask if the video is still rendering and it can either answer you yes or no. 
+
+ARRAYS-Essentially a list of other variables. A list of variables in consecutive order. For example a string is an array of characters. 
