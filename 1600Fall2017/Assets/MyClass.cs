@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MyClass : MonoBehaviour {
 
+<<<<<<< HEAD
 	string myString = "hello";
 
 	int myInt = 5;
@@ -18,4 +19,12 @@ public class MyClass : MonoBehaviour {
 	void Update () {
 		
 	}
+=======
+	string myString = "Hello";
+
+	void Start () {
+		print(myString);
+	}
+	
+>>>>>>> master
 }
