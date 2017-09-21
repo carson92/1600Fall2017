@@ -23,3 +23,4 @@ public class Arrays : MonoBehaviour {
 		
 	}
 }
+// Arrays are when you put multiple numbers into an array to sort them, and then after they are in an array you can apply changes like if statements. ;
