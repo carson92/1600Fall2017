@@ -53,6 +53,9 @@ public class DeathScript : MonoBehaviour {
 			if(other.CompareTag("banana")){
 			currHealth -= 20;
 			}
+            if(other.CompareTag("lava")){
+                currHealth -= 100;
+            }
 			if(currHealth < 0) {
 				print("Dead");
 				currHealth = 0;
