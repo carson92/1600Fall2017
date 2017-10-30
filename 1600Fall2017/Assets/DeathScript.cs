@@ -9,6 +9,8 @@ public class DeathScript : MonoBehaviour {
 
 	public float healthBarLength;
 
+    public GameObject gameOverUI;
+
 
  void Start () {
      healthBarLength = Screen.width / 2;
@@ -62,6 +64,10 @@ public class DeathScript : MonoBehaviour {
 			}
 			if(currHealth > 100) {
 			currHealth = 100; 
+            
+            if(currHealth == 0){
+                gameOverUI.SetActive(true);
+            }
 		}		
     }
 }
