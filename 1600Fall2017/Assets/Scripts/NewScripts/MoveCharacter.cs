@@ -6,25 +6,36 @@ using UnityEngine;
 
 public class MoveCharacter : MonoBehaviour {
 
-	CharacterController cc;
-	Vector3 tempMove;
-    public float speed = 5;
-    public float gravity = 1;
-    public float jumpHeight = 0.2f;
-
-    void Start () {
-		cc = GetComponent<CharacterController>();
-		MoveInput.JumpAction = Jump;
-		MoveInput.MoveAction += Move;
+	public CharacterController characterController;
+	public float gravity = 3f; 
+	public Vector3 moveVector3;
+	private  float speed = 10;
+	public float jumpForce = 10;
+	public int time;
+	
+	void FixedUpdate () {
+		moveVector3.y -= gravity * Time.deltaTime;
+			moveVector3.x = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+		  
+		if(characterController.isGrounded){
+			if(Input.GetKey(KeyCode.Space)){
+			moveVector3.y += jumpForce * Time.deltaTime;
+			}
+		}
+		
+		characterController.Move(moveVector3);
+		
 	}
 
-	void Jump () {
-		tempMove.y = jumpHeight;
-	}
-
-	void Move (float _movement) {
-		tempMove.y = -gravity*Time.deltaTime;
-		tempMove.x = _movement*speed*Time.deltaTime;
-		cc.Move(tempMove);
+void OnTriggerEnter(Collider other)
+{
+	if(other.CompareTag("speed")){
+		speed = speed + 15;
+		Invoke("Timer", 3);
 	}
 }
+
+void Timer () {
+	speed = speed -15;
+}
+} 
