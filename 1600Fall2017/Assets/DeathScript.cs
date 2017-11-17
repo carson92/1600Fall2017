@@ -9,18 +9,17 @@ public class DeathScript : MonoBehaviour {
 
     public float maxCoins = 1000;
 
-    public float currCoins = 0;
+    public float currCoins = 100;
 
     public float healthBarLength;
     public float coinCollectBar;
-    
-
     public GameObject gameOverUI;
-
+    public AudioSource coinSound;
+    public AudioClip coinBabing;
 
  void Start () {
      healthBarLength = Screen.width / 2;
-     coinCollectBar = Screen.width / 2;
+     coinCollectBar = Screen.width / 5;
 
  }
 
@@ -54,10 +53,7 @@ public void AddjustCurrentCoins(int adj){
     currCoins += adj;
         if(currCoins < 0)
             currCoins = 0;
-        if (currCoins > 0)
-            currCoins = maxCoins;
-        if (maxCoins < 1)
-            maxCoins = 1;
+        if (currCoins > maxCoins)
         coinCollectBar = (Screen.width / 2) * (currHealth /(float)maxCoins);
 }
 
@@ -85,12 +81,13 @@ public void AddjustCurrentCoins(int adj){
             if(currHealth > 100) {
             currHealth = 100; 
             
-            if(currHealth == 0){ 
-                gameOverUI.SetActive(true);
+          
             }
             if(other.CompareTag("coin")){
                 currCoins += 100;
             }
+            if(other.CompareTag("coin")){
+			coinSound.PlayOneShot(coinBabing);
+            }
+            }
         }       
-    }
-}
