@@ -31,7 +31,7 @@ void OnTriggerEnter(Collider other)
 {
 	if(other.CompareTag("speed")){
 		speed = speed + 15;
-		Invoke("Timer", 3);
+		Invoke("Timer", 10);
 	}
 }
 
