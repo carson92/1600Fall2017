@@ -5,7 +5,7 @@ using UnityEngine;
 public class DeathScript : MonoBehaviour {
     public float maxHealth = 100;
 
-    public float currHealth = 100;
+    public float currentHealth = 100;
 
     public float maxCoins = 1000;
 
@@ -24,7 +24,7 @@ public class DeathScript : MonoBehaviour {
  }
 
     void OnGUI(){
-     GUI.Box(new Rect(10, 10, healthBarLength, 20), "Health" + currHealth + "/" + maxHealth); 
+     GUI.Box(new Rect(10, 10, healthBarLength, 20), "Health" + currentHealth + "/" + maxHealth); 
      GUI.Box(new Rect(10, 40, coinCollectBar, 20), "Coins" + currCoins + "/" + maxCoins);   
  }
   void Update () {
@@ -37,15 +37,15 @@ public class DeathScript : MonoBehaviour {
      
  }
   public void AddjustCurrentHealth(int adj) {
-             currHealth += adj;    
+             currentHealth += adj;    
      
-             if (currHealth < 0)
-                     currHealth = 0;
+             if (currentHealth < 0)
+                     currentHealth = 0;
      
-             if (currHealth > maxHealth)
-                     currHealth = maxHealth;
+             if (currentHealth > maxHealth)
+                     currentHealth = maxHealth;
      
-             healthBarLength = (Screen.width / 2) * (currHealth / (float)maxHealth);
+             healthBarLength = (Screen.width / 2) * (currentHealth / (float)maxHealth);
  }
  
 
@@ -54,32 +54,33 @@ public void AddjustCurrentCoins(int adj){
         if(currCoins < 0)
             currCoins = 0;
         if (currCoins > maxCoins)
-        coinCollectBar = (Screen.width / 2) * (currHealth /(float)maxCoins);
+        coinCollectBar = (Screen.width / 2) * (currentHealth /(float)maxCoins);
 }
 
      
  public void Death() {
-     if (currHealth == 0) {
+     if (currentHealth == 0) {
          Destroy(gameObject);
          Application.LoadLevel(Application.loadedLevel);
      }
      }
     void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Health")){
-            currHealth += 20;
+            if(other.CompareTag("Health")){
+			currentHealth += 20;
             }
             if(other.CompareTag("banana")){
-            currHealth -= 20;
+            currentHealth -= 20;
             }
+           
             if(other.CompareTag("lava")){
-                currHealth -= 100;
+                currentHealth -= 100;
             }
-            if(currHealth < 0) {
+            if(currentHealth < 0) {
                 print("Dead");
-                currHealth = 0;
+                currentHealth = 0;
             }
-            if(currHealth > 100) {
-            currHealth = 100; 
+            if(currentHealth > 100) {
+            currentHealth = 100; 
             
           
             }
@@ -88,6 +89,9 @@ public void AddjustCurrentCoins(int adj){
             }
             if(other.CompareTag("coin")){
 			coinSound.PlayOneShot(coinBabing);
+            }
+            if(other.CompareTag("laser")){
+                currentHealth -= 30;
             }
             }
         }       
